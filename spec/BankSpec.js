@@ -10,4 +10,10 @@ describe("Bank", () => {
       expect(bank._balance).toEqual(0);
     });
   });
+
+  describe(".deposit", () => {
+    it("can save the money", () => {
+      expect(bank.deposit(1000)).toEqual(1000);
+    });
+  });
 });
