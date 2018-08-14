@@ -6,3 +6,7 @@ var Bank = function() {
 Bank.prototype.deposit = function(amount) {
   return this._balance += amount
 }
+
+Bank.prototype.withdrawal = function(amount) {
+  return this._balance -= amount;
+}
