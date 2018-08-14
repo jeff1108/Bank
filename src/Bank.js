@@ -11,7 +11,9 @@ Bank.prototype.deposit = function(amount) {
 }
 
 Bank.prototype.withdrawal = function(amount) {
-  return this._balance -= amount;
+  this._balance -= amount;
+  this.record(amount)
+  return this._balance
 }
 
 Bank.prototype.record = function(amount) {
