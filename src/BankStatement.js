@@ -1,16 +1,16 @@
 var BankStatement = function() {
-  this._balance = 0;
-  this._debt = 0;
+  this.balance = 0;
+  this._debit = 0;
   this._credit = 0;
   this._transaction = [];
 }
 
 BankStatement.prototype.record = function() {
   var current_time = this.time();
-  var balance = this._balance;
-  var debt_amount = this._debt;
+  var balance = this.balance;
+  var debit_amount = this._debit;
   var credit_amount = this._credit;
-  this._transaction.push({current_time, debt: debt_amount, credit: credit_amount, balance});
+  this._transaction.push({current_time, debit: debit_amount, credit: credit_amount, balance});
   this.cleanRecord();
   return this._transaction;
 }
@@ -24,6 +24,6 @@ BankStatement.prototype.time = function() {
 }
 
 BankStatement.prototype.cleanRecord = function() {
-  this._debt = 0;
+  this._debit = 0;
   this._credit = 0;
 }
