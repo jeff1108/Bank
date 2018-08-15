@@ -12,6 +12,7 @@ BankStatement.prototype.record = function() {
   var credit_amount = this._credit;
   this._transaction.push({current_time, debt: debt_amount, credit: credit_amount, balance});
   this.cleanRecord();
+  return this._transaction;
 }
 
 BankStatement.prototype.time = function() {

@@ -1,8 +1,8 @@
 describe("BankStatement", () => {
-  var bank;
+  var bankstatement;
 
   beforeEach(function() {
-    bank = new Bank();
+    bankstatement = new BankStatement;
     var baseTime = new Date(2018, 7, 15)
     jasmine.clock().install();
     jasmine.clock().mockDate(baseTime);
@@ -13,16 +13,24 @@ describe("BankStatement", () => {
     jasmine.clock().uninstall();
   });
 
+  describe(".balance", () => {
+    it("start at 0 ", () => {
+      expect(bankstatement._balance).toEqual(0);
+    });
+  });
+
   describe(".record", () => {
     it("can record to my bank statement when deposit", () => {
-      bank.deposit(1000);
-      expect(bank._bankstatement._transaction).toEqual([{current_time: "15/8/2018", debt: 1000, credit: 0, balance: 1000}]);
+      bankstatement._credit = 1000
+      bankstatement._balance = 1000
+      expect(bankstatement.record()).toEqual([{current_time: "15/8/2018", debt: 0, credit: 1000, balance: 1000}]);
     });
 
     it("can record to my bank statement when withdrawal", () => {
-      bank.deposit(1000);
-      bank.withdrawal(500);
-      expect(bank._bankstatement._transaction).toEqual([{current_time: "15/8/2018", debt: 1000, credit: 0, balance: 1000}, {current_time: "15/8/2018", debt: 0, credit: 500, balance: 500}]);
+      bankstatement._credit = 1000
+      bankstatement._debt = 500
+      bankstatement._balance = 500
+      expect(bankstatement.record()).toEqual([{current_time: "15/8/2018", debt: 500, credit: 1000, balance: 500}]);
     });
   });
 });
