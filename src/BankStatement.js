@@ -27,3 +27,16 @@ BankStatement.prototype.cleanRecord = function() {
   this._debit = 0;
   this._credit = 0;
 }
+
+BankStatement.prototype.list = function() {
+  return "date" + " || " + "credit" + " || " + "debit" + " || " + "balance" + "\n"
+}
+
+BankStatement.prototype.allTransaction = function() {
+  var text = this.list()
+  for( var i = 0; i < this._transaction.length; i++ ) {
+    text += this._transaction[i]["current_time"] + " || " + this._transaction[i]["credit"] +
+    " || " + this._transaction[i]["debit"] + " || " + this._transaction[i]["balance"] + "\n"
+  }
+  return text
+}
