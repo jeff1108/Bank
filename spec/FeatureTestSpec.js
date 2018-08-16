@@ -36,7 +36,7 @@ describe("FeatureTest", () => {
     it("print out bank transaction after deposit and withdrawal", () => {
       bank.deposit(1000);
       bank.withdrawal(500)
-      expect(bank.printOut()).toEqual("date || credit || debit || balance\n" + "15/8/2018 || 1000 || 0 || 1000\n" + "15/8/2018 || 0 || 500 || 500\n")
+      expect(bank.printOut()).toEqual("date || credit || debit || balance\n" + "15/8/2018 || 0 || 500 || 500\n" + "15/8/2018 || 1000 || 0 || 1000\n")
     });
   });
 });
