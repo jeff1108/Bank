@@ -1,21 +1,23 @@
-var Bank = function(bankstatement = new BankStatement()) {
+var Bank = function(bankstatement = new BankStatement(), printer = new Printer()) {
   this._bankstatement = bankstatement;
+  this.printer = printer;
 }
 
 Bank.prototype.deposit = function(amount) {
-  this._bankstatement.balance += amount;
-  this._bankstatement._credit = amount;
-  this._bankstatement.record();
-  return this._bankstatement.balance;
+  this._bankstatement.record(amount, 0)
+  return this._bankstatement.balance
 }
 
 Bank.prototype.withdrawal = function(amount) {
-  this._bankstatement.balance -= amount;
-  this._bankstatement._debit = amount;
-  this._bankstatement.record();
-  return this._bankstatement.balance;
+   if (this._bankstatement.balance < amount) {
+     throw new Error("Insufficient deposit")
+   } else {
+     this._bankstatement.record(0, amount)
+   }
+   return this._bankstatement.balance
 }
 
+
 Bank.prototype.printOut = function() {
- return this._bankstatement.allTransaction();
+ return this.printer.allTransaction(this._bankstatement._transaction);
 }

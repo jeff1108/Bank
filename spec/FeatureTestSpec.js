@@ -3,12 +3,19 @@ describe("FeatureTest", () => {
 
   beforeEach(function() {
     bank = new Bank();
+    var baseTime = new Date(2018, 7, 15)
+    jasmine.clock().install();
+    jasmine.clock().mockDate(baseTime);
+    jasmine.clock().tick(50);
+  });
+
+  afterEach(function() {
+    jasmine.clock().uninstall();
   });
 
   describe(".deposit", () => {
     it("can show the balance after deposit", () => {
-      bank.deposit(1000)
-      expect(bank.deposit(1000)).toEqual(2000);
+      expect(bank.deposit(1000)).toEqual(1000);
     });
   });
 
