@@ -76,29 +76,32 @@ I would like to check my transaction date
 - Repeat the above step
 
 3.Think about how many class I need base on Single Responsibility Principle
-- Bank -------------------provide base function in ATM
-- Bank Statement --------record the transaction
+- Bank ------------------user interface
+- Bank Statement -------record all transactions
+- Transaction -----------show one transaction
+- Printer ----------------print out bank transaction
 ---
 ## Implementation
 Step1: Set bank balance equal 0
 
 Step2: Create deposit method
+- use debit / credit as parameters
+- pass these two parameters to record method
 
 Step3: Create withdrawal method
 
 Step4: Create a array called "transaction" to record all bank transaction,
-- Push the each transaction hashes to bank statement array
+- Push the each transaction class to that array
 
-- `[{current_time: 14/01/2012, amount:0, balance: 0}]`
+- `transaction = new Transaction(this.time(), credit, debit, this.balance)`
 
 Step5: Mocking the time
 - Installed with a call to jasmine.clock().install in a spec that needs to manipulate time
 - Uninstall the clock after the you done to restore the original function
 
-Step6: Separate the amount to debt/credit amount in bank statement
-- `[{current_time: 14/01/2012, credit: 0, debit: 0, balance: 0}]`
+Step6: Create Transaction class store bank transaction and store in array
 
-Step7: Separate to two class base on Simple Responsibility Principle
+Step7: Create Printer class to format the bank statement by using loop method
 
 ```
 Bank                                     
@@ -108,13 +111,18 @@ Bank
 
 BankStatement
 - record
+- time
+
+Transaction
+- date
+- debit
+- credit
+- balance
+
+Printer
 - allTransaction
 - list
-- time
 ```
-
-Step8: Create allTransaction method in class BankStatement to format the bank statement by using loop method
-
 ----
 
 ## Example
