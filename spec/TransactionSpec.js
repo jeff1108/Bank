@@ -5,14 +5,14 @@ describe("Transaction", () => {
     transaction = new Transaction("15/8/2018", 1000, 500, 500);
   });
 
-  describe(".debit", () => {
-    it("can show the debit", () => {
+  describe(".credit", () => {
+    it("can show the credit", () => {
       expect(transaction.credit).toEqual(1000);
     });
   });
 
-  describe(".credit", () => {
-    it("can show the credit", () => {
+  describe(".debit", () => {
+    it("can show the debit", () => {
       expect(transaction.debit).toEqual(500);
     });
   });
