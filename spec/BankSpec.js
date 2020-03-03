@@ -23,10 +23,6 @@ describe("Bank", () => {
       bank.withdrawal(500);
       expect(mockBankStatement.record).toHaveBeenCalled();
     });
-    it("show an error when balance lower than 0", () => {
-      mockBankStatement.balance.and.returnValue(0);
-      expect(function(){bank.withdrawal(100)}).toThrow(new Error("Insufficient deposit"))
-    });
   });
 
   describe(".printOut", () => {
